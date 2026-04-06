@@ -2,7 +2,7 @@
 const { Student } = require('./Student')
 const fs = require('fs').promises
 /**
- * Node Class (GIVEN, you will need to use this)
+ * Node Class (GIVEN, you will need to use this)  
  */
 class Node {
   // Public Fields
