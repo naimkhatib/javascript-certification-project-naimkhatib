@@ -1,5 +1,5 @@
 // Necessary Imports, DO NOT REMOVE
-const { LinkedList } = require("./LinkedList");
+const { LinkedList } = require('./LinkedList');
 const { Student } = require('./Student')
 const readline = require('readline');
 
@@ -47,7 +47,15 @@ async function handleCommand(command) {
         console.log('Adding student...')
         const [name, year, email, specialization] = args
         // --------> WRITE YOUR CODE BELOW
+        if (!name || !year || !email || !specialization) {
+          console.log("Invalid arguments");
+          break;
+        }
 
+        const student = new Student(name, Number(year), email, specialization);
+        studentManagementSystem.addStudent(student);
+
+        console.log(studentManagementSystem.displayStudents());
         // --------> WRITE YOUR CODE ABOVE
         break;
 
@@ -62,7 +70,15 @@ async function handleCommand(command) {
        */
       console.log('Removing student...')
       // --------> WRITE YOUR CODE BELOW
-      
+      const [removeEmail] = args;
+
+      if (!removeEmail) {
+        console.log("Invalid arguments");
+        break;
+      }
+
+      studentManagementSystem.removeStudent(removeEmail);
+      console.log(studentManagementSystem.displayStudents());
       // --------> WRITE YOUR CODE ABOVE
       break;
 
@@ -75,7 +91,7 @@ async function handleCommand(command) {
        */
       console.log('Displaying students...')
       // --------> WRITE YOUR CODE BELOW
-
+      console.log(studentManagementSystem.displayStudents());
       // --------> WRITE YOUR CODE ABOVE
       break;
 
@@ -91,11 +107,24 @@ async function handleCommand(command) {
        */
       console.log('Finding student...')
       // --------> WRITE YOUR CODE BELOW
-      
+      const [findEmail] = args;
+
+      if (!findEmail) {
+        console.log("Invalid arguments");
+        break;
+      }
+
+      const found = studentManagementSystem.findStudent(findEmail);
+
+      if (found === -1) {
+        console.log("Student does not exist");
+      } else {
+        console.log(found.getString());
+      }  
       // --------> WRITE YOUR CODE ABOVE
       break;
 
-    case 'save':
+    case 'save':  
       /**
        * TODO:
        *  Saves the current LinkedList to a specified JSON file
@@ -106,7 +135,15 @@ async function handleCommand(command) {
        */
       console.log('Saving data...')
       // --------> WRITE YOUR CODE BELOW
+      const [saveFileName] = args;
 
+      if (!saveFileName) {
+        console.log("Invalid arguments");
+        break;
+      }
+
+      await studentManagementSystem.saveToJson(saveFileName);
+      console.log("Data saved successfully");
       // --------> WRITE YOUR CODE ABOVE
 
     case "load":
@@ -120,7 +157,15 @@ async function handleCommand(command) {
        */
       console.log('Loading data...')
       // --------> WRITE YOUR CODE BELOW
+      const [loadFileName] = args;
 
+      if (!loadFileName) {
+        console.log("Invalid arguments");
+        break;
+      }
+
+      await studentManagementSystem.loadFromJSON(loadFileName);
+      console.log(studentManagementSystem.displayStudents());
       // --------> WRITE YOUR CODE ABOVE
       break;
 
@@ -134,7 +179,15 @@ async function handleCommand(command) {
        */
       console.log('Clearing data...')
       // --------> WRITE YOUR CODE BELOW
+      // clear funciton is private. LinkedList is cleared through direct access to properties
+      await studentManagementSystem.loadFromJSON('[]').catch(() => {
+        // if file exists
+        studentManagementSystem.head = null;
+        studentManagementSystem.tail = null;
+        studentManagementSystem.length = 0;
+      });
 
+      console.log("All students cleared");
       // --------> WRITE YOUR CODE ABOVE
       break;
 
