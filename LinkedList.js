@@ -116,7 +116,7 @@ class LinkedList {
       current = current.next;
     }
 
-    return -1;
+    return -1; 
   }
 
   /**
