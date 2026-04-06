@@ -93,7 +93,7 @@ class LinkedList {
         this.tail = previous;
       }
       this.length--;
-      return;
+      return; 
     }
     previous = current;
     current = current.next;
