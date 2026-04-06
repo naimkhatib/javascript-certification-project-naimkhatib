@@ -241,7 +241,7 @@ class LinkedList {
     const data = await fs.readFile(fileName, 'utf-8');
     const arr = JSON.parse(data);
 
-    this.#clearStudents();
+    this.#clearStudents(); 
 
     for (let obj of arr) {
       const student = new Student(
