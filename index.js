@@ -124,7 +124,7 @@ async function handleCommand(command) {
       // --------> WRITE YOUR CODE ABOVE
       break;
 
-    case 'save':  
+    case 'save':
       /**
        * TODO:
        *  Saves the current LinkedList to a specified JSON file
