@@ -79,7 +79,7 @@ class LinkedList {
   let previous = null;
 
   while (current !== null) {
-    if (current.data.getEmail() === email) {
+    if (current.data.getEmail().toLowerCase() === email.toLowerCase()) {
 
       // removing head
       if (previous === null) {
@@ -110,7 +110,7 @@ class LinkedList {
     let current = this.head;
 
     while (current !== null) {
-      if (current.data.getEmail() === email) {
+      if (current.data.getEmail().toLowerCase() === email.toLowerCase()) {
         return current.data;
       }
       current = current.next;
