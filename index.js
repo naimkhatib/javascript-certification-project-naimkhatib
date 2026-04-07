@@ -91,7 +91,12 @@ async function handleCommand(command) {
        */
       console.log('Displaying students...')
       // --------> WRITE YOUR CODE BELOW
-      console.log(studentManagementSystem.displayStudents());
+      const results = studentManagementSystem.displayStudents()
+      if (results !== "") {
+        console.log(results);
+      } else {
+        console.log('Student list is empty!');
+      }
       // --------> WRITE YOUR CODE ABOVE
       break;
 
