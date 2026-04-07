@@ -163,9 +163,17 @@ async function handleCommand(command) {
         console.log("Invalid arguments");
         break;
       }
-
-      await studentManagementSystem.loadFromJSON(loadFileName);
-      console.log(studentManagementSystem.displayStudents());
+      
+      try {
+        await studentManagementSystem.loadFromJSON(loadFileName);
+        console.log(studentManagementSystem.displayStudents());
+      } catch (err) {
+        if (err.code === 'ENOENT') {
+          console.log("File not found");
+        } else {
+          console.log("Error loading file");
+        }
+      }
       // --------> WRITE YOUR CODE ABOVE
       break;
 
