@@ -91,9 +91,9 @@ async function handleCommand(command) {
        */
       console.log('Displaying students...')
       // --------> WRITE YOUR CODE BELOW
-      const results = studentManagementSystem.displayStudents()
-      if (results !== "") {
-        console.log(results);
+      const result = studentManagementSystem.displayStudents()
+      if (result !== "") {
+        console.log(result);
       } else {
         console.log('Student list is empty!');
       }
