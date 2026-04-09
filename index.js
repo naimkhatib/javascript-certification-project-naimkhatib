@@ -146,9 +146,19 @@ async function handleCommand(command) {
         console.log("Invalid arguments");
         break;
       }
-
-      await studentManagementSystem.saveToJson(saveFileName);
-      console.log("Data saved successfully");
+      try {
+        await studentManagementSystem.saveToJson(saveFileName);
+        console.log("Data saved successfully");
+      } catch (err) {
+          if (err.code === 'ENOENT') {
+            console.log('Invalid path: directory does not exist');
+          } else if (err.message.includes('non-empty string')) {
+            console.log('Invalid file name: must be a non-empty string');
+          } else {
+            console.log('Error saving data:', err.message);
+          }
+      }
+      break;
       // --------> WRITE YOUR CODE ABOVE
 
     case "load":
@@ -168,7 +178,7 @@ async function handleCommand(command) {
         console.log("Invalid arguments");
         break;
       }
-      
+    
       try {
         await studentManagementSystem.loadFromJSON(loadFileName);
         console.log(studentManagementSystem.displayStudents());
