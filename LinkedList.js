@@ -213,7 +213,7 @@ class LinkedList {
    */
   async saveToJson(fileName) {
     // TODO
-      let arr = [];
+    let arr = [];
     let current = this.head;
 
     while (current !== null) {
@@ -251,9 +251,8 @@ class LinkedList {
         obj.specialization
       );
       this.addStudent(student);
-    }    
+    }      
   }
-
 }
 
 module.exports = { LinkedList }
