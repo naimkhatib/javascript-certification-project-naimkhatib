@@ -86,6 +86,14 @@ class Student {
   setSpecialization(newSpecialization) {
     this.#specialization = newSpecialization;
   }
+
+  setName(newName) {
+    this.#name = newName;
+  }
+
+  setYear(newYear) {
+    this.#year = newYear;
+  }
 }
 
 module.exports = { Student }
